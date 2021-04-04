@@ -1,0 +1,162 @@
+//Animación para la bienvenida
+
+@keyframes entranceOne {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.welcome {
+  opacity: 0;
+  animation: entranceOne 2s forwards;
+}
+
+//Animación para el primer texto de las instrucciones
+
+@keyframes entranceTwo {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+}
+
+.steps-one {
+  opacity: 0;
+  animation: entranceTwo 5s forwards;
+  animation-delay: 1.5s;
+}
+
+//Animación para el segundo texto de las instrucciones
+
+@keyframes entranceThree {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translateY(-75%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+}
+
+.steps-two {
+  opacity: 0;
+  animation: entranceThree 5s forwards;
+  animation-delay: 4.5s;
+}
+
+//Animación para la entrada retardada del boton de las instrucciones
+
+@keyframes delayEnter {
+  0% {
+    opacity: 0;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.delay-enter {
+  animation: delayEnter 3s forwards;
+}
+
+//Animación para el el boton de confirmación de las instrucciones
+
+.fade-leave-active {
+  animation: fadeOut 2s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+//Animación para la entrada del pokeboard
+
+.entrance-enter-active {
+  animation: transitionToUp 2.5s;
+}
+
+@keyframes transitionToUp {
+  0% {
+    opacity: 0;
+    transform: translateY(200%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+//Animación para la pokebola de espera
+
+@keyframes rotatingPokeball {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Animación para el modal de los detalles de pokemon
+
+.slowly-opacity-enter-active {
+  animation: bounce-in 1s;
+}
+
+.slowly-opacity-leave-active {
+  animation: bounce-out 1s;
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

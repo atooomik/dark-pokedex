@@ -1,0 +1,13 @@
+@tailwind utilities;
+
+#vs1__listbox {
+  background-color: theme('backgroundColor.gray.700') !important;
+}
+
+#vs1__listbox li {
+  color: theme('colors.gray.500') !important;
+}
+
+.vs__selected {
+  color: theme('colors.gray.400') !important;
+}
