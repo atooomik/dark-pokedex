@@ -33,5 +33,8 @@ export default {
   UNSET_FAVORITE (state, data) {
     state.favoritePokemon.collection.splice(data.index, 1)
     state.favoritePokemon.names.splice(data.index, 1)
+  },
+  SET_SHOW_EXPORT (state, data) {
+    state.showExportModal = data
   }
 }

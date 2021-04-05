@@ -10,5 +10,6 @@ export default () => ({
   favoritePokemon: {
     collection: [],
     names: []
-  }
+  },
+  showExportModal: false
 })

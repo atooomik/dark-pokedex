@@ -19,5 +19,8 @@ export default {
   },
   unsetFavoritePokemon ({ commit }, data) {
     commit('UNSET_FAVORITE', data)
+  },
+  setShowExportModal ({ commit }, data) {
+    commit('SET_SHOW_EXPORT', data)
   }
 }

@@ -1,7 +1,7 @@
 <template>
-  <div class="max-w-xl w-full h-full mx-auto p-4 space-y-4 lg:space-y-8 lg:max-w-7xl">
+  <div class="max-w-xl w-full h-full mx-auto p-4 space-y-4 lg:max-w-7xl lg:space-y-8 lg:py-8">
     <div
-      class="mt-8 mb-4 mx-auto p-4 rounded-lg bg-gray-800 lg:mt-12 lg:mb-8"
+      class="mb-4 mx-auto p-4 rounded-lg bg-gray-800 lg:mb-8"
     >
       <p class="text-center text-gray-500">
         Bienvenido a la Pokédex
@@ -26,6 +26,9 @@
       <mobil-card />
     </div>
     <!--Modal mobil-->
+    <div v-if="getShowExportModal">
+      <export-image-modal />
+    </div>
   </div>
 </template>
 
@@ -38,7 +41,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getDeviceScreen', 'getFetchPokemon'])
+    ...mapGetters(['getDeviceScreen', 'getFetchPokemon', 'getShowExportModal'])
   },
   mounted () {
     this.mobileScreen()

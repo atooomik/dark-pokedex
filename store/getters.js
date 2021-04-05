@@ -16,5 +16,8 @@ export default {
   },
   getFavoritePokemon (state) {
     return state.favoritePokemon
+  },
+  getShowExportModal (state) {
+    return state.showExportModal
   }
 }

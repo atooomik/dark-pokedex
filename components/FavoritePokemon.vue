@@ -14,7 +14,7 @@
         <component :is="isOpen ? 'eye-off-icon' : 'eye-icon'" stroke-width="2" class="w-6 h-6 text-gray-500" />
       </button>
     </div>
-    <div v-show="isOpen" class="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4" :class="[isOpen ? 'h-full' : 'h-0']">
+    <div v-show="isOpen" class="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4 bg-gray-800" :class="[isOpen ? 'h-full' : 'h-0']">
       <div v-for="(pokemon,i) in getFavoritePokemon.collection" :key="i" :class="`relative p-2 border border-types-${pokemon.types[0].type.name} bg-gray-700 rounded-lg`">
         <pokeball-icon v-if="!isLoaded" stroke-width="2" class="animate-spin w-10 h-10 mx-auto mb-4 text-gray-500" />
         <img
@@ -32,6 +32,9 @@
         </button>
       </div>
     </div>
+    <button v-if="getFavoritePokemon.collection.length > 4" class="flex w-full justify-center items-center mt-2 text-gray-500" @click="setShowExportModal(true)">
+      <p>Exportar como tarjeta de entrenador</p>
+    </button>
   </div>
 </template>
 
@@ -52,7 +55,7 @@ export default {
     ...mapGetters(['getFavoritePokemon'])
   },
   methods: {
-    ...mapActions(['unsetFavoritePokemon']),
+    ...mapActions(['unsetFavoritePokemon', 'setShowExportModal']),
     showFavorites () {
       this.isOpen = !this.isOpen
     }
