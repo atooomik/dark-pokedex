@@ -55,8 +55,10 @@ export default {
   methods: {
     ...mapActions(['setShowExportModal']),
     saveOnImage () {
-      domtoimage.toJpeg(document.getElementById('myFavorites'), { quality: 1 })
+      domtoimage.toPng(document.getElementById('myFavorites'))
         .then(function (dataUrl) {
+          const img = new Image()
+          img.src = dataUrl
           const link = document.createElement('a')
           link.download = 'my-favorite-pokemon.jpeg'
           link.href = dataUrl

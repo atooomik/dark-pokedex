@@ -1,5 +1,8 @@
 <template>
   <div class="p-2 bg-gray-800 rounded-lg lg:p-4">
+    <p class="font-semibold text-center text-gray-400">
+      Tarjeta de entrenador
+    </p>
     <div class="flex">
       <p class="text-gray-500 mb-2">
         Favoritos: <span class="font-semibold text-gray-400">{{ getFavoritePokemon.collection.length }}</span>
@@ -32,8 +35,10 @@
         </button>
       </div>
     </div>
-    <button v-if="getFavoritePokemon.collection.length > 4" class="flex w-full justify-center items-center mt-2 text-gray-500" @click="setShowExportModal(true)">
-      <p>Exportar como tarjeta de entrenador</p>
+    <button v-if="getFavoritePokemon.collection.length > 4" class="flex justify-center items-center mt-2 mx-auto p-2 text-gray-500 bg-gray-700 rounded-lg" @click="setShowExportModal(true)">
+      <p class="font-semibold text-gray-400">
+        Exportar
+      </p> <id-icon stroke-width="2" class="text-gray-400 mx-2" />
     </button>
   </div>
 </template>
