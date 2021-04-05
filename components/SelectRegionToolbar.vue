@@ -3,7 +3,7 @@
     <p class="text-center lg:text-left text-gray-500">
       Selecciona la region que quieras consultar
     </p>
-    <div class="flex justify-evenly flex-wrap">
+    <div class="flex justify-evenly flex-wrap lg:justify-between">
       <button
         class="rounded-lg px-2 py-2 transition-colors ease-out duration-500 lg:px-4"
         :class="getRegionSelected === 2 ? 'bg-gray-700 text-gray-400' : 'bg-gray-800 text-gray-600'"

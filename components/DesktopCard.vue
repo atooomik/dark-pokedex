@@ -8,7 +8,7 @@
     <div v-else-if="fetchStatus === 'isSearching'" class="flex flex-col justify-center h-56 p-4 bg-gray-800 transition-colors ease-out duration-500 rounded-lg">
       <pokeball-icon stroke-width="2" class="animate-spin w-10 h-10 mx-auto mb-4 text-gray-500" />
       <p class="text-center text-gray-500">
-        Buscando datos
+        Llamando Pokémon
       </p>
     </div>
     <div v-else-if="fetchStatus === 'isFinish'" :class="`grid grid-cols-3 h-56 p-4 border-types-${pokemon.types[0].type.name} border-2 transition-colors ease-out duration-700 rounded-lg bg-gray-800`">
@@ -49,10 +49,22 @@
             </p>
           </div>
         </div>
-        <button class="flex flex-col items-center justify-end text-gray-400" :disabled="isDisabled" @click="addToFavorites(pokemon)">
-          <p>Guardar como favorito</p>
-          <heart-icon stroke-width="2" class="w-6 h-6 mx-2" :class="[alreadyFavorite ? 'text-red-500' : 'text-gray-500']" />
-        </button>
+        <div class="flex justify-center items-end">
+          <button class="p-2 text-sm text-gray-400 bg-gray-700 rounded-lg" :disabled="favoritesAreFull" @click="addToFavorites(pokemon)">
+            <div v-if="alreadyFavorite" class="flex items-center justify-end space-x-2">
+              <p>
+                Quitar de favoritos
+              </p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(239, 68, 68);transform:;-ms-filter:"><path d="M20.205,4.791c-1.137-1.131-2.631-1.754-4.209-1.754c-1.483,0-2.892,0.552-3.996,1.558 c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412L12,21.414 l8.207-8.207C22.561,10.854,22.562,7.158,20.205,4.791z" /></svg>
+            </div>
+            <div v-else-if="!alreadyFavorite" class="flex items-center justify-end space-x-2">
+              <p>
+                Agregar a favoritos
+              </p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(113, 113, 122);transform:;-ms-filter:"><path d="M20.205,4.791c-1.137-1.131-2.631-1.754-4.209-1.754c-1.483,0-2.892,0.552-3.996,1.558 c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412L12,21.414 l8.207-8.207C22.561,10.854,22.562,7.158,20.205,4.791z" /></svg>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -75,6 +87,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getFetchPokemon', 'getFavoritePokemon']),
+    favoritesAreFull () {
+      return this.getFavoritePokemon.length === 6
+    },
     alreadyFavorite () {
       return _.includes(this.getFavoritePokemon.names, this.pokemon.name)
     },
