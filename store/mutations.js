@@ -27,9 +27,11 @@ export default {
     }
   },
   SET_FAVORITE (state, data) {
-    state.favoritePokemon.push(data)
+    state.favoritePokemon.collection.push(data.newPokemon)
+    state.favoritePokemon.names.push(data.name)
   },
   UNSET_FAVORITE (state, data) {
-    state.favoritePokemon.splice(data.index, 1)
+    state.favoritePokemon.collection.splice(data.index, 1)
+    state.favoritePokemon.names.splice(data.index, 1)
   }
 }

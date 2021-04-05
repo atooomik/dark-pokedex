@@ -49,7 +49,7 @@
             <!-- Agregar a favoritos -->
             <button class="flex justify-center items-center w-full text-gray-400" :disabled="isDisabled" @click="addToFavorites(pokemon)">
               <p>Guardar como favorito</p>
-              <heart-icon stroke-width="2" class="w-6 h-6 mx-2 text-gray-500" />
+              <heart-icon stroke-width="2" class="w-6 h-6 mx-2 text-gray-500" :class="[alreadyFavorite ? 'text-red-500' : 'text-gray-500']" />
             </button>
           </div>
         </div>
@@ -61,6 +61,7 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex'
+import * as _ from 'lodash'
 export default {
   name: 'MobilCard',
   data () {
@@ -72,13 +73,19 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getFetchPokemon', 'getFavoritePokemon'])
+    ...mapGetters(['getFetchPokemon', 'getFavoritePokemon']),
+    alreadyFavorite () {
+      return _.includes(this.getFavoritePokemon.names, this.pokemon.name)
+    },
+    indexInFavorite () {
+      return _.indexOf(this.getFavoritePokemon.names, this.pokemon.name, 0)
+    }
   },
   mounted () {
     this.pokeFetch()
   },
   methods: {
-    ...mapActions(['setPokemonFetch', 'setFavoritePokemon']),
+    ...mapActions(['setPokemonFetch', 'setFavoritePokemon', 'unsetFavoritePokemon']),
     pokeFetch () {
       this.fetchStatus = 'idle'
       const pokemonSelected = this.getFetchPokemon.pokemonToFetch
@@ -119,10 +126,10 @@ export default {
       })
     },
     addToFavorites (pokemon) {
-      if (this.getFavoritePokemon.length < 6) {
-        this.setFavoritePokemon(pokemon)
+      if (this.alreadyFavorite) {
+        this.unsetFavoritePokemon({ index: this.indexInFavorite })
       } else {
-        this.isDisabled = true
+        this.setFavoritePokemon({ newPokemon: pokemon, name: pokemon.name })
       }
     }
   }

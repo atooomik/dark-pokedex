@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="p-6 rounded-lg text-gray-500 bg-gray-800 lg:mx-auto"
+      class="p-3 rounded-lg text-gray-500 bg-gray-800 lg:mx-auto lg:p-6"
     >
       <v-select
         class="w-full bg-gray-700 rounded-lg capitalize"

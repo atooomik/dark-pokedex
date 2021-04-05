@@ -7,5 +7,8 @@ export default () => ({
     name: '',
     type: ''
   },
-  favoritePokemon: []
+  favoritePokemon: {
+    collection: [],
+    names: []
+  }
 })

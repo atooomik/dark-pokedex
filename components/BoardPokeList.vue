@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="pokemons.length > 0"
-      class="poke-container h-56 justify-items-center grid grid-cols-3 lg:grid-cols-4 lg:h-96 gap-4 text-center border-2 border-gray-800 rounded-lg p-2"
+      class="poke-container h-56 grid grid-cols-3 p-2 gap-4 text-center border-2 border-gray-800 rounded-lg lg:grid-cols-4 lg:h-96 lg:p-6"
     >
       <div
         v-for="(poke, index) in pokemons"

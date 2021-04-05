@@ -22,7 +22,7 @@
             class="mx-auto"
             @load="isLoaded = true"
           >
-          <p :class="`col-span-1 capitalize text-types-${pokemon.types[0].type.name} font-semibold text-2xl text-center`">
+          <p :class="`col-span-1 capitalize text-types-${pokemon.types[0].type.name} font-semibold text-2xl text-center text-types-feary`">
             {{ pokemon.name }}
           </p>
           <div class="flex space-x-2">
@@ -51,7 +51,7 @@
         </div>
         <button class="flex flex-col items-center justify-end text-gray-400" :disabled="isDisabled" @click="addToFavorites(pokemon)">
           <p>Guardar como favorito</p>
-          <heart-icon stroke-width="2" class="w-6 h-6 mx-2 text-gray-500" />
+          <heart-icon stroke-width="2" class="w-6 h-6 mx-2" :class="[alreadyFavorite ? 'text-red-500' : 'text-gray-500']" />
         </button>
       </div>
     </div>
@@ -61,6 +61,7 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex'
+import * as _ from 'lodash'
 export default {
   name: 'DesktopCard',
   data () {
@@ -68,12 +69,18 @@ export default {
       fetchStatus: 'idle',
       pokemon: {},
       isLoaded: false,
-      isDisabled: false
+      isDisabled: false,
+      isFavorite: false
     }
   },
   computed: {
-    ...mapGetters(['getFetchPokemon', 'getFavoritePokemon'])
-
+    ...mapGetters(['getFetchPokemon', 'getFavoritePokemon']),
+    alreadyFavorite () {
+      return _.includes(this.getFavoritePokemon.names, this.pokemon.name)
+    },
+    indexInFavorite () {
+      return _.indexOf(this.getFavoritePokemon.names, this.pokemon.name, 0)
+    }
   },
   watch: {
     'getFetchPokemon' () {
@@ -86,7 +93,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setActivePokemon', 'setFavoritePokemon']),
+    ...mapActions(['setActivePokemon', 'setFavoritePokemon', 'unsetFavoritePokemon']),
     pokeFetch () {
       const pokemonSelected = this.getFetchPokemon.pokemonToFetch
       this.fetchStatus = 'isSearching'
@@ -128,10 +135,10 @@ export default {
       })
     },
     addToFavorites (pokemon) {
-      if (this.getFavoritePokemon.length < 6) {
-        this.setFavoritePokemon(pokemon)
+      if (this.alreadyFavorite) {
+        this.unsetFavoritePokemon({ index: this.indexInFavorite })
       } else {
-        this.isDisabled = true
+        this.setFavoritePokemon({ newPokemon: pokemon, name: pokemon.name })
       }
     }
   }

@@ -2,9 +2,9 @@
   <div class="p-2 bg-gray-800 rounded-lg lg:p-4">
     <div class="flex">
       <p class="text-gray-500 mb-2">
-        Favoritos: <span class="font-semibold text-gray-400">{{ getFavoritePokemon.length }}</span>
+        Favoritos: <span class="font-semibold text-gray-400">{{ getFavoritePokemon.collection.length }}</span>
       </p>
-      <button v-if="getFavoritePokemon.length > 0" class="flex items-center mr-0 ml-auto" @click="showFavorites">
+      <button v-if="getFavoritePokemon.collection.length > 0" class="flex items-center mr-0 ml-auto mb-2" @click="showFavorites">
         <p v-if="!isOpen" class="text-gray-500 mr-2">
           Mostrar
         </p>
@@ -14,8 +14,8 @@
         <component :is="isOpen ? 'eye-off-icon' : 'eye-icon'" stroke-width="2" class="w-6 h-6 text-gray-500" />
       </button>
     </div>
-    <div v-show="isOpen" class="grid grid-cols-3 lg:grid-cols-6 lg:gap-4" :class="[isOpen ? 'h-20' : 'h-0']">
-      <div v-for="(pokemon,i) in getFavoritePokemon" :key="i" :class="`relative p-2 border border-types-${pokemon.types[0].type.name} bg-gray-700 rounded-lg`">
+    <div v-show="isOpen" class="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4" :class="[isOpen ? 'h-full' : 'h-0']">
+      <div v-for="(pokemon,i) in getFavoritePokemon.collection" :key="i" :class="`relative p-2 border border-types-${pokemon.types[0].type.name} bg-gray-700 rounded-lg`">
         <pokeball-icon v-if="!isLoaded" stroke-width="2" class="animate-spin w-10 h-10 mx-auto mb-4 text-gray-500" />
         <img
           class="mx-auto"
