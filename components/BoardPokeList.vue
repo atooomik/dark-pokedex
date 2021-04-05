@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="pokemons.length > 0"
-      class="poke-container h-96 justify-items-center grid grid-cols-3 lg:grid-cols-4 gap-4 text-center border-2 border-gray-800 rounded-lg p-2"
+      class="poke-container h-56 justify-items-center grid grid-cols-3 lg:grid-cols-4 lg:h-96 gap-4 text-center border-2 border-gray-800 rounded-lg p-2"
     >
       <div
         v-for="(poke, index) in pokemons"
@@ -18,13 +18,12 @@
           :src="imageUrl + poke.entry_number + '.png'"
           width="48"
           height="48"
-          :alt="poke.name + ' sprite'"
           @load="isLoaded = true"
         >
         <p class="capitalize" :class="[getActivePokemon.name === poke.pokemon_species.name ? `font-semibold text-types-${getActivePokemon.type}` : 'text-gray-600']" v-text="poke.pokemon_species.name" />
       </div>
     </div>
-    <div v-else class="flex flex-col justify-center items-center h-96">
+    <div v-else class="flex flex-col justify-center items-center h-56 lg:h-96">
       <pokeball-icon stroke-width="2" class="animate-spin w-10 h-10 mx-auto mb-4 text-gray-500" />
       <p class="text-3xl text-gray-500">
         Llamando Pokémon

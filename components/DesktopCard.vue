@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="fetchStatus === 'idle'" class="flex h-56 p-4 bg-gray-800 transition-colors ease-out duration-500 rounded-lg">
-      <p class="text-3xl text-gray-500">
+    <div v-if="fetchStatus === 'idle'" class="flex items-center h-56 p-4 bg-gray-800 transition-colors ease-out duration-500 rounded-lg">
+      <p class="text-3xl text-center text-gray-500">
         Selecciona un Pókemon para mostrar sus detalles
       </p>
     </div>
