@@ -2,14 +2,14 @@
   <div>
     <div
       v-if="pokemons.length > 0"
-      class="poke-container h-56 grid grid-cols-3 p-2 gap-4 text-center border-2 border-gray-800 rounded-lg lg:grid-cols-4 lg:h-96 lg:p-6"
+      class="poke-container h-80 grid grid-cols-3 p-2 gap-4 text-center border-2 border-gray-800 rounded-lg lg:grid-cols-4 lg:h-96 lg:p-6"
     >
       <div
         v-for="(poke, index) in pokemons"
         :key="index"
         class="w-full bg-gray-800 rounded-lg cursor-pointer transition-colors ease-out duration-700"
         :class="[getActivePokemon.name === poke.pokemon_species.name ? `border-2 border-types-${getActivePokemon.type}` : '']"
-        @click="setPokemonFetch({ modal: true, pokemon: poke.pokemon_species.name })"
+        @click="setPokemonFetch({ modal: true, pokemon: poke.entry_number })"
       >
         <pokeball-icon v-if="!isLoaded" stroke-width="2" class="animate-spin w-10 h-10 mx-auto mb-4 text-gray-500" />
         <img
